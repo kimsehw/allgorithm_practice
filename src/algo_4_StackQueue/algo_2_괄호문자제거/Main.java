@@ -12,16 +12,12 @@ public class Main {
         int openCnt = 0;
         Stack<Character> stack = new Stack<>();
         for (char c : str.toCharArray()) {
+            if (c == CLOSE) {
+                while (stack.pop() != OPEN)
+                    ;
+                continue;
+            }
             stack.push(c);
-            if (c == OPEN) {
-                openCnt++;
-            }
-            if (c == CLOSE && openCnt > 0) {
-                while (stack.peek() != OPEN) {
-                    stack.pop();
-                }
-                stack.pop();
-            }
         }
 
         StringBuilder ans = new StringBuilder();
